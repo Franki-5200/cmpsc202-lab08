@@ -1,6 +1,6 @@
 # Lab 08: Navigating Weighted Graphs with Dijkstra's Algorithm
 
-Name(s): _______________________  
+Name(s): Francesca Hoh  
 
 ## Introduction
 You are already familiar with Breadth-First Search (BFS) and Depth-First Search (DFS) for exploring graphs. However, what happens when all edges are not created equal? In this lab, we will explore Dijkstra's Algorithm, which allows us to find the shortest path between two vertices in a *weighted* graph.
@@ -15,13 +15,15 @@ BFS is excellent for finding the shortest path in an unweighted graph. Let's see
 
 **Questions:**
 1. If you run a standard BFS starting at Node $A$, looking for Node $D$, which path will the BFS algorithm discover first? Why?
-   > *Your answer here*
+   > DCBA
+   > The weighted number is lower
 
-2. What is the total weight of the path BFS found? What is the total weight of the alternative path? 
-   > *Your answer here*
+2.
+total weight: 9
+other route: 100
 
 3. How does the definition of "shortest path" change when moving from unweighted graphs to weighted graphs?
-   > *Your answer here*
+   > It basically changes to which path is the path of least resistence aka lowest numbers
 
 ---
 
@@ -41,14 +43,14 @@ Starting at Node $A$, trace Dijkstra's algorithm. Fill in the tracker table belo
 | Step | Current Node | Neighbors to Check | `dist` Map | `visited` Set | 
 | :--- | :--- | :--- | :--- | :--- | 
 | 0 | $A$ | $B$, $C$ | $A$:0, $B$:4, $C$:2 | { } | 
-| 1 | | | | | 
-| 2 | | | | | 
-| 3 | | | | | 
-| 4 | | | | | 
+| 1 | b |C D |$b$:4, $c$:1, $d$:5 | | 
+| 2 | c | B D|$c$:2, $b$:1, $d$:8| | 
+| 3 | d |C E |$d$:8, $c$:8, $e$:2 | | 
+| 4 | e | D C|$e$:2, $d$:2, $c$:10| | 
 
 **Conceptual Question:**
 When we add a vertex to the "visited" set, why are we 100% certain we have found the absolute shortest path to that node? 
-> *Your answer here*
+> we are sure because it tries all the paths until it finds the path of least resistence
 
 ---
 
@@ -62,16 +64,16 @@ Dijkstra's algorithm relies on an assumption about the weights. Let's see what h
 Trace Dijkstra's algorithm starting from Node $A$ to find the shortest path to Node $C$.
 
 1. Which node does Dijkstra's algorithm visit first after $A$?
-   > *Your answer here*
+   > It would go to c
 
 2. What will Dijkstra's algorithm declare as the shortest path to $C$, and what is its weight?
-   > *Your answer here*
+   > I would declare AC the correct route and the weight would be 5
 
 3. Look at the graph manually. What is the *actual* shortest path from $A$ to $C$, and what is its total weight? 
-   > *Your answer here*
+   > I would declare ABC the correct route and the weight would be -2
 
 4. **The Trap:** Explain exactly *why* Dijkstra's algorithm failed to find the correct shortest path in this scenario.
-   > *Your answer here*
+   > It could not calculate the negative values
 
 ---
 
@@ -95,8 +97,8 @@ Standard Dijkstra's algorithm only understands *edges* and *edge weights*. It do
 
 1. How should you represent the paths with stairs in your graph so the algorithm never tries to use them?
 
-   > *Your answer here*
+   > you could give it a negative number so it never tries
 
 2. How can you account for the $3$-minute waiting time at busy crosswalk intersections using *only* edge weights? (Hint: Think about how you could modify the weights of edges connecting to that intersection).
 
-   > *Your answer here*
+   > You would add three onto the edge weight to account for the time tacked on
